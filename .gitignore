@@ -1,0 +1,9 @@
+BOJ/input.txt
+*.log
+Debug/Problem Solving.tlog/cl.command.1.tlog
+*.tlog
+Debug/vc120.idb
+*.vcxproj
+Debug/Source.obj
+*.filters
+Debug/vc120.pdb
