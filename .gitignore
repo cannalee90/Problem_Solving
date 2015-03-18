@@ -7,3 +7,4 @@ Debug/vc120.idb
 Debug/Source.obj
 *.filters
 Debug/vc120.pdb
+*.obj

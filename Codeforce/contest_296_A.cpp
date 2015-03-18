@@ -14,20 +14,16 @@
 typedef long long ll;
 using namespace std;
 
-vector<long long> tree;
-vector<int> data;
-int n, k, m;
-
 int main()
 {
-#ifdef _CONSOLE
-	freopen("input.txt", "r", stdin);
-#endif
-	cin >> n >> k >> m;
-	m += k;
-	for (int i = 0; i < n; i++){
-		int t1;
-		data.push_back(t1);
+	long long a, b;
+	long long s = 0;
+	cin >> a >> b;
+	while (b > 0){
+		s += a / b;
+		a %= b;
+		if(b > a)
+			swap(a, b);
 	}
-	for(int i  = 0;
+	cout << s << endl;
 }
