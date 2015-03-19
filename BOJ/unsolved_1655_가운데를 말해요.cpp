@@ -39,9 +39,8 @@ int main()
 		if (t1 >= *itor){
 			if (i % 2 == 1)
 				itor++;
-		}
-		else if (t1 < *itor)	
-		{
+		}	
+		else if (t1 < *itor){
 			if (i % 2 == 0){
 				itor--;
 			}
