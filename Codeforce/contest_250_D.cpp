@@ -24,6 +24,7 @@ public:
 		this->there = there;
 		this->weight = weight;
 	}
+
 	bool operator <(const edge &a) const
 	{
 		return this->weight > a.weight;
