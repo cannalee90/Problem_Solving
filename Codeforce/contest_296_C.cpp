@@ -49,7 +49,6 @@ int main()
 		if (q == 'H'){
 			y_coor.insert(d);
 			itor = y_coor.lower_bound(d);
-
 			itor++;
 			a = *itor;
 			l_1 = *itor - (*--itor);
@@ -57,7 +56,6 @@ int main()
 			l_2 = *itor - (*--itor);
 			a -= *itor;
 			y_length.insert(l_2);
-
 			itor_y = y_length.lower_bound(a);
 			y_length.erase(itor_y);
 
@@ -79,7 +77,6 @@ int main()
 		long long h = *x_length.end().operator--();
 		long long w = *y_length.end().operator--();
 
-		
 		printf("%I64d\n", h * w);
 	}
 }
