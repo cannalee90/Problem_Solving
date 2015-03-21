@@ -14,22 +14,24 @@
 typedef long long ll;
 using namespace std;
 
-int n, m;
 
+int n, m, k;
 int main()
 {
 #ifdef _CONSOLE
 	freopen("input.txt", "r", stdin);
 #endif
-	int t;
-	cin		>> t;
-	while (t--){
-		cin >> n;
-		vector<int> data;
-		printf("%d\n", (n + 1) / 2);
-		multiset<int> a;
-
-		for (int i = 1; i < n; i++){
-		}
+	int ans = 0;
+	cin >> n;
+	string a;
+	cin >> a;
+	ans++;
+	char last = a[1];
+	for (int i = 1; i < n; i++){
+		cin >> a;
+		if (a[0] == last)
+			ans++;
+		last = a[1];
 	}
+	cout << ans << endl;
 }
