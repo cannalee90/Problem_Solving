@@ -44,7 +44,7 @@ int main()
 			}
 			if ((i + 1) % 20 == 0)
 				cout << endl;
-			if(i % 2 == 0)
+			if (i % 2 == 0)
 				cout << *itor << " ";
 		}
 		cout << endl;
