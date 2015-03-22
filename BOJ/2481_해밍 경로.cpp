@@ -23,12 +23,40 @@ int main()
 	freopen("input.txt", "r", stdin);
 #endif
 	cin >> n >> m;
-	vector<string> vertex(n);
-	vector<vector<int> > graph(n);
-	for (int i = 0; i < n; i++)
-		cin >> vertex[i];
+	vector<pair<long, long > > ver_list;
+	map<ll, ll> vertex;
+	vector<vector<long long> > graph(n);
 	for (int i = 0; i < n; i++){
+		string v;
+		cin >> v;
+		ll ver_num = 0;
+		ll binary = 1;
+		for (int i = v.size() - 1; i >= 0; i--){
+			if (v[i] == '1'){
+				ver_num += binary;
+			}
+			binary *= 2;
+		}
+		ver_list.push_back(make_pair(ver_num, i));
+		vertex[ver_num] = i;
+	}
 
+	for (int i = 0; i < n; i++){
+		ll temp = 1;
+		ll here = ver_list[i].first;
+		for (int j = 0; j < m; j++){
+			long long num;
+			if (here & temp){
+				num = here ^ temp;
+				if (vertex.count(num)){
+					int there = vertex[num];
+					graph[ver_list[i].second].push_back(there);
+					graph[there].push_back(ver_list[i].second);
+				}
+
+			}
+			temp *= 2;
+		}
 	}
 
 	vector<int> dis(n, INT_MAX);
