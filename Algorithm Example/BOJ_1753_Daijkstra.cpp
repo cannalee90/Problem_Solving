@@ -26,17 +26,6 @@ public:
 	}
 };
 
-void getMin(int &min, int &here, vector<int> &que, vector<int> &check)
-{
-	for(int i = 1; i<=n; i++)
-	{
-		if(que[i] < min && check[i] == 0) 
-		{
-			here = i;
-			min = que[i];
-		}
-	}
-}
 
 class cmp{
 public:
