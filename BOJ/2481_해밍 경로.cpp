@@ -78,7 +78,7 @@ int main()
 			if (dis[there] > here_dis + 1){
 				dis[there] = here_dis + 1;
 				pq.push(make_pair(here_dis + 1, there));
-				track[there] = here;
+				track[there] = here;	
 			}
 		}
 	}
