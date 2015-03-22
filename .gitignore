@@ -9,3 +9,4 @@ Debug/Source.obj
 Debug/vc120.pdb
 *.obj
 input.txt
+Release/vc120.pdb
