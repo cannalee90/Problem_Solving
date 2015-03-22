@@ -54,7 +54,9 @@ int main()
 		graph[t1].push_back(d1(t2,t3));
 	}
 	priority_queue<d1, vector<d1>, cmp > que;
+
 	vector<int> visited(n + 1, 99999999);
+
 	for(int i = 1; i<=n; i++)
 	{
 		if(begin == i)
@@ -62,6 +64,7 @@ int main()
 		else
 			que.push(d1(i,99999999));
 	}
+
 	while(!que.empty())
 	{
 		d1 here = que.top();
@@ -75,6 +78,7 @@ int main()
 		}
 		que.pop();
 	}
+
 	for(int i = 1; i<=n; i++)
 	{
 		if(visited[i] != 99999999)
