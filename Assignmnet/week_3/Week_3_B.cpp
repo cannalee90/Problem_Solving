@@ -27,11 +27,11 @@ int main()
 	while (t--){
 		int money;
 		int num_coin;
-		cin >> money >> num_coin;
+		scanf("%d %d", &money, &num_coin);
 		money = 10000 - money;
 
 		int changes[10001];
-		int coins[15];
+		int coins[501];
 		memset(changes, -1, sizeof(changes));
 		memset(coins, 0, sizeof(coins));
 		for (int i = 0; i < num_coin; i++){
