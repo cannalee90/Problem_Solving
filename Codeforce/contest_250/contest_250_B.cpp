@@ -14,34 +14,47 @@
 typedef long long ll;
 using namespace std;
 
+bool cmp(const pair<int, int> &a, pair <int, int> &b) {
+	return a.first > b.first;
+}
 
-int n, m, k;
 int main()
 {
 #ifdef _CONSOLE
 	freopen("input.txt", "r", stdin);
 #endif
-	vector<pair<int, int> > data;
-	vector<int> res;
-	for (int i = 0; i < 3; i++){
-		int t1;
-		cin >> t1;
-		data.push_back(make_pair(t1, i));
-		res.push_back(t1);
-	}
-	for (int i = 0; i <= data[0].first; i++){
-		int a = data[0].first;
-		int b = data[1].first;
-		int c = data[2].first;
-		int bond_a = a - i;
-		int bond_b = b - bond_a;
-		int bond_c = c - bond_b;
-		if (bond_a < 0 || bond_b < 0 || bond_c < 0) 
-			continue;
-		if (bond_a + bond_b == b && bond_b + bond_c == c && bond_c + bond_a == a){
-			cout << bond_a << " " << bond_b << " " << bond_c << endl;
-			return 0;
+	int sum;
+	int limit;
+	vector<pair<int, int > > v;
+	cin >> sum >> limit;
+	for (int i = 1; i <= limit; i++){
+		for (int j = 1; j <= i;){
+			if (i & j){
+				v.push_back(make_pair(j, i));
+				break;
+			}
+			else{
+				j <<= 1;
+			}
 		}
 	}
-	cout << "Impossible" << endl;
+	sort(v.begin(), v.end(),cmp);
+	int ans = 0;
+	vector<int> res;
+	for (int i = 0; i <v.size(); i++){
+		if (sum - v[i].first >= 0){
+			sum -= v[i].first;
+			res.push_back(v[i].second);
+			ans++;
+		}
+	}
+	if (sum)
+		cout << "-1";
+	else{
+		cout << ans << endl;
+		for (int i = 0; i < ans; i++){
+			cout << res[i] << " "; 
+		}
+	}
+	cout << endl;
 }
