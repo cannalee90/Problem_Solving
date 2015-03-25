@@ -91,6 +91,7 @@ void make_tree(){
 		idx /= 2;
 	}
 }
+
 double get_dis(int node){
 	if (S[node].count)
 		return S[node].Ye - S[node].Yb;
