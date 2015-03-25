@@ -21,7 +21,8 @@ int main(){
 #ifdef _CONSOLE
 	freopen("input.txt", "r", stdin);
 #endif
-	const int limit = 1000000;
+	const int limit =12000001;
+
 	vector<int> Prime;
 	vector<bool> P(limit + 10, true);
 	for (int i = 2; i <= limit; i++){
