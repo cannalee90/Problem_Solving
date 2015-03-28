@@ -30,9 +30,8 @@ int main(){
 	mmax = cur;
 	for (int i = 1; i < n; i++){
 		cin >> cur;
-		if (cur > DP[i - 1] * cur){
+		if (cur > DP[i - 1] * cur)
 			DP[i] = cur;
-		}
 		else
 			DP[i] = DP[i - 1] * cur;
 		mmax = max(mmax, DP[i]);
