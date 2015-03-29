@@ -17,78 +17,71 @@ typedef long long ll;
 
 using namespace std;
 
+int n, limit, p;
+
+ll process(vector<pair<ll, ll> > data){
+	ll ans = 0;
+	ll bus = limit;
+	bool full = false;
+	for (ll i = 0; i < data.size();){
+
+		ll &here_dis = data[i].first;
+		ll &here_stu = data[i].second;
+
+		if (bus == 0)
+			bus = limit;
+
+		if (here_stu == 0){
+			i++;
+			continue;
+		}
+		if (here_stu > bus){
+			if (bus == limit){
+				ans += (ll)2 * (ll)here_dis * ((ll)here_stu / (ll)limit);
+				here_stu %= limit;
+			}
+			else{
+				here_stu -= bus;
+				bus = 0;
+			}
+		}
+		else if (here_stu <= bus){
+			if (bus == limit)
+				ans += (ll)2 * (ll)here_dis;
+			bus -= here_stu;
+			here_stu = 0;
+		}
+	}
+	return ans;
+}
+
+bool cmp(const pair<ll, ll> &a, const pair<ll, ll> &b){
+	return a.first > b.first;
+}
+
 int main(){
 #ifdef _CONSOLE
 	freopen("input.txt", "r", stdin);
-#endif
-	int n, limit, p;
-	cin >> n >> limit >> p;
-	priority_queue <pair<int, int>, vector<pair<int, int> >, less<pair<int, int> > > pq_1;
-	priority_queue <pair<int, int>, vector<pair<int, int> >, less<pair<int, int> > > pq_2;
 
-	for (int i = 0; i < n; i++){
+#endif
+	vector<pair<ll, ll> > data_1;
+	vector<pair<ll, ll> > data_2;
+
+	scanf("%d %d %d", &n, &limit, &p);
+
+	for (ll i = 0; i < n; i++){
 		int t1, t2;
 		scanf("%d %d", &t1, &t2);
 		if (t1 < p)
-			pq_1.push(make_pair(p - t1, t2));
+			data_1.push_back(make_pair(p - t1, t2));
 		else
-			pq_2.push(make_pair(t1 - p, t2));
+			data_2.push_back(make_pair(t1 - p, t2));
 	}
-	ll ans = 0, cost = 0;
-	bool flag = false;
-	int farthest = 0;
-	while (!pq_1.empty()){
-		int here_dis = pq_1.top().first;
-		int here_stu = pq_1.top().second;
-		pq_1.pop();
+	sort(data_1.begin(), data_1.end(), cmp);
+	sort(data_2.begin(), data_2.end(), cmp);
 
-		if (!flag){
-			farthest = here_dis;
-			flag = true;
-		}
-
-		if (cost + here_stu <= limit){
-			cost += here_stu;
-		}
-		else if (cost + here_stu > limit){
-			cost += (limit - cost);
-			here_stu -= (limit - cost);
-			pq_1.push(make_pair(here_dis, here_stu));
-		}
-
-		if (cost == limit){
-			cost = 0;
-			ans += farthest * 2;
-			flag = false;
-		}
-	}
-	ans += farthest * 2;
-	cost = 0;
-	flag = false;
-	farthest = 0;
-	while (!pq_2.empty()){
-		int here_dis = pq_2.top().first;
-		int here_stu = pq_2.top().second;
-		pq_2.pop();
-		if (!flag){
-			farthest = here_dis;
-			flag = true;
-		}
-		if (cost + here_stu <= limit){
-			cost += here_stu;
-		}
-		else if (cost + here_stu > limit){
-			cost += (limit - cost);
-			here_stu -= (limit - cost);
-			pq_2.push(make_pair(here_dis, here_stu));
-		}
-		if (cost == limit){
-			cost = 0;
-			ans += farthest * 2;
-			flag = false;
-		}
-	}
-	ans += farthest * 2;
-
+	ll ans = 0;
+	ans += process(data_1);
+	ans += process(data_2);
 	cout << ans << endl;
 }
