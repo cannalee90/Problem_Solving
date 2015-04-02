@@ -8,78 +8,34 @@
    
 using namespace std;
 
-int d1[5];
-int d2[5];
-
 int main()
 {
-	string n;
-	int p, t;
-	int totalm = 0;
-	int total;
 #ifdef _CONSOLE
     freopen("input.txt", "r", stdin);
 #endif
-	cin >> t;
-	for(int p = 0; p<t; p++)
-	{
-		for(int i = 0; i<4; i++)
-		{
-			d1[i] =0 ;
-		}
-		cin >> d2[0] >> d2[1] >> d2[2] >> d2[3];
-		for(int i = 0; i<4; i++)
-		{
-			for(int j = 0; j<4; j++)
-			{
-				if(d2[i] == d2[j]) d1[i]++;
-			}
-		}
-		int maxp = 0;
-		int max = d1[0];
-		for(int i = 0; i<4; i++)
-		{
-			if(max < d1[i])
-			{
-				max = d1[i]; maxp = i;
-			}
-		}
-		if(max == 4)
-		{
-			total =  d2[maxp] * 5000 + 50000;
-		}
-		if(max == 3)
-		{
-			total =  d2[maxp] * 1000 + 10000;
-		}
-		if(max == 2)
-		{
-			if(d1[0] == 2 && d1[1] == 2 && d1[2] == 2 && d1[3] == 2)
-			{
-				for(int i = 0; i<4; i++)
-				{
-					if(d2[i] != d2[0])
-					{
-						total =  2000 + d2[0] * 500 + d2[i] * 500;
-						break;
-					}
-				}
-			}
-			else
-			{
-				total =  d2[maxp] * 100 + 1000;
-			}
-		}
-		if(max == 1)
-		{
-			int m = d2[0];
-			for(int i = 0; i<4; i++)
-			{
-				if(d2[i] > m) m = d2[i];
-			}
-			total = m * 100;
-		}
-		if(total > totalm) totalm = total;
+	int n;
+	int mmax = -1;
+	cin >> n;
+	while (n--){
+		int score = 0;
+		vector<int> dice(4);
+		for (int i = 0; i < 4; i++)
+			cin >> dice[i];
+		sort(dice.begin(), dice.end());
+		if (dice[0] == dice[3])
+			score = 50000 + (5000 * dice[0]);
+		else if (dice[0] == dice[2] || dice[1] == dice[3])
+			score = 10000 + dice[2] * 1000;
+		else if (dice[0] != dice[1] && dice[1] != dice[2] && dice[2] != dice[3])
+			score = dice[3] * 100;
+		else if (dice[0] == dice[1] && dice[2] == dice[3])
+			score = 2000 + dice[0] * 500 + dice[2] * 500;
+		else if (dice[0] == dice[1])
+			score = 1000 + dice[0] * 100;
+		else
+			score =  1000 + dice[2] * 100;
+		if (mmax < score)
+			mmax = score;
 	}
-	cout << totalm << endl;
+	cout << mmax << endl;
 }
