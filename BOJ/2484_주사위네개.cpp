@@ -37,5 +37,5 @@ int main()
 		if (mmax < score)
 			mmax = score;
 	}
-	cout << mmax << endl;
+
 }
