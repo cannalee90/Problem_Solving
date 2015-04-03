@@ -21,7 +21,6 @@ vector<vector<int>  >  graph;
 
 void delete_edge(vector<vector<int> >  &parent, int there){
 	for (int i = 0; i < parent[there].size(); i++){
-//		printf("here: %d, there: %d\n", parent[there][i], there);
 		int here = parent[there][i];
 		graph[here][there] = 0;
 		delete_edge(parent, here);
@@ -47,14 +46,6 @@ int main(){
 			cin >> t >> h >> w;
 			graph[t][h] = w;
 		}
-/*		for (int i = 0; i < n; i++){
-			for (int j = 0; j <n; j++){
-				printf("%d ", graph[i][j]);
-			}
-			cout << endl;
-		}
-		cout << endl;
-*/
 		priority_queue<pair<int, int>, vector<pair<int, int> >, greater<pair<int, int> > > pq;
 		pq.push(make_pair(0, begin));
 		dis[begin] = 0;
@@ -67,7 +58,6 @@ int main(){
 					int there = i;
 
 					int cost = here_dis + graph[here][there];
-//					cout << "here: " << here << " "<< "there: " << there <<" " << "cost: " << cost << endl;
 
 					if (dis[there] > cost){
 						parent[there].clear();
@@ -88,21 +78,12 @@ int main(){
 		dis.resize(n + 1, INT_MAX);
 		parent.resize(n + 1);
 		dis[begin] = 0;
-/*		for (int i = 0; i < n; i++){
-			for (int j = 0; j < n; j++){
-				printf("%d ", graph[i][j]);
-			}
-			cout << endl;
-		}
-		cout << endl;*/
 		while (!pq.empty()){
 			int here = pq.top().second;
 			int here_dis = pq.top().first;
 			pq.pop();
 			for (int i = 0; i < n; i++){
 				if (graph[here][i] != 0){
-//					cout << "here: " << here << "there: " << i << endl;
-
 					int there = i;
 					int cost = here_dis + graph[here][i];
 					if (dis[there] > cost){
