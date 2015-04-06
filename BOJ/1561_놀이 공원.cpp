@@ -1,49 +1,39 @@
-#include <iostream>
-#include <limits.h>
-#include <utility>
-#include <fstream>
-#include <string>
-#include <string.h>
-#include <functional>
-#include <queue>
-#include <stdio.h>
-#include <algorithm>
-#include <set>
-#include <map>
-#include <vector>
-#include <stack>
+#include<cstdio>
 
 typedef long long ll;
 using namespace std;
 
-ll get_cus(vector<ll> &ride, ll time){
+ll ride[10001];
+ll n, m;
+
+ll get_cus(ll &time){
 	ll total_cus = 0;
-	for (int i = 0; i < ride.size(); i++)
+	for (int i = 0; i < m; i++)
 		total_cus += time / ride[i];
 	return total_cus;
 }
 
 int main(){
-#ifdef _CONSOLE
-	freopen("input.txt", "r", stdin);
-#endif
-	ll n, m;
-	ll mmax = LONG_MIN;
+	ll mmax = -1;
 	ll mmax_cus;
-	scanf("%lld %lld", &n, &m);
-	vector<ll> ride(m);
-	for (int i = 0; i < m; i++)
-		scanf("%lld", &ride[i]);
-	ll left = 0, right = 200000000000;
+	ll left = 0, right = 60000000000;
 	ll num_cus;
-	if (n - m <= 0){
-		cout << n << endl;
+	ll time;
+
+	scanf("%lld %lld", &n, &m);
+	for (int i = 0; i < m; ++i)
+		scanf("%lld", &ride[i]);
+	n -= m;
+
+	if (n <= 0){	
+		printf("%d\n", n);
 		return 0;
 	}
+
 	while (left <= right){
-		ll time = (left + right) / 2;
-		num_cus = get_cus(ride, time);
-		if (num_cus >= n - m){
+		time = (left + right) / 2;
+		num_cus = get_cus(time);
+		if (num_cus >= n){
 			right = time - 1;
 		}
 		else{
@@ -54,12 +44,14 @@ int main(){
 			}
 		}
 	}
-	for (int i = 0; i < ride.size(); i++){
+
+	for (int i = 0; i < m; ++i){
 		if (mmax % ride[i] == ride[i] - 1)
 			mmax_cus++;
-		if (mmax_cus == n - m){
-			cout << i + 1 << endl;
+		if (mmax_cus == n){
+			printf("%d\n", i + 1);
 			return 0;
 		}
 	}
+
 }
