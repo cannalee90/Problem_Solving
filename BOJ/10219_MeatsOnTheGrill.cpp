@@ -23,25 +23,24 @@ int main()
 	freopen("input.txt", "r", stdin);
 #endif
 	int t;
-	int n, m;
 	cin >> t;
-	while (t--)
-	{
+	while (t--){
+		int n, m;
 		cin >> n >> m;
-		data.resize(n + 1, vector<char>(m + 1, '.'));
-		for (int i = 0; i < n; i++)
-		{
-			for (int j = 0; j < m; j++)
-			{
-				cin >> data[i][j];
+		vector<vector<char> > meats(n + 1);
+		for (int i = 0; i < n; i++){
+			for (int j = 0; j < m; j++){
+				char t1;
+				cin >> t1;
+				meats[i].push_back(t1);
 			}
 		}
-		for (int i = 0; i < n; i++)
-		{
-			for (int j = 0; j < n; j++)
-			{
-				if(data[i][j] ==
+		for (int i = n - 1; i >= 0; i--){
+			for (int j = 0; j <m ; j++){
+				cout << meats[i][j];
 			}
+			cout << endl;
 		}
 	}
 }
+
