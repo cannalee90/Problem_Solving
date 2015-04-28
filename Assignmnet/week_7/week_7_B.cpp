@@ -14,13 +14,13 @@
 #include <stack>
 
 using namespace std;
-map<string, int> hashing; //이름, node번호
-vector<vector<int> > tree; //traversal을 위한 트리
-vector<int> parent; //형제관계를 처리하기 위해서 parent배열을 사용
-vector<int> depth;  // node의 깊이
-vector<int> series; // 인덱스 트리를 만들기 위해서 필요한 배열(data)
-vector<int> serial; // node의 번호를 쿼리번호 즉 
-vector<int> indextree; //인덱스 트리용 배열
+map<string, int> hashing;		// 이름, node번호
+vector<vector<int> > tree;		// traversal을 위한 트리
+vector<int> parent;				// 형제관계를 처리하기 위해서 parent배열을 사용
+vector<int> depth;				// node의 깊이
+vector<int> series;				// 인덱스 트리를 만들기 위해서 필요한 배열(data)
+vector<int> serial;				// node의 번호를 쿼리에 필요한 index로 필요한 정보를 저장한 배열
+vector<int> indextree;			// 인덱스 트리용 배열
 
 
 int n, cnt = 1, root = 1;
@@ -76,17 +76,16 @@ int get_idx(){
 		idx *= 2;
 	return idx;
 }
+
 void make_tree(){
 	int idx = get_idx();
 	indextree.resize(idx * 2 + 1, INT_MAX);
-	for (int i = idx; i < idx + series_cnt; i++){
+	for (int i = idx; i < idx + series_cnt; i++)
 		indextree[i] = depth[series[i - idx]];
-	}
 	idx /= 2;
 	while (idx){
-		for (int i = idx; i < idx * 2; i++){
+		for (int i = idx; i < idx * 2; i++)
 			indextree[i] = min(indextree[i * 2], indextree[i * 2 + 1]);
-		}
 		idx /= 2;
 	}
 }
@@ -95,12 +94,10 @@ int min_query(int left, int right){
 	left += get_idx();
 	right += get_idx();
 	while (left <= right){
-		if (left % 2 == 1){
+		if (left % 2 == 1)
 			mmin = min(indextree[left++], mmin);
-		}
-		if (right % 2 == 0){
+		if (right % 2 == 0)
 			mmin = min(indextree[right--], mmin);
-		}
 		left /= 2;
 		right /= 2;
 	}
@@ -112,8 +109,8 @@ void output(){
 	for (int i = 0; i < m; i++){
 		int left, right;
 		string str_1, str_2;
-		cin >> str_1 >> str_2;
 		int n_1, n_2;
+		cin >> str_1 >> str_2;
 		n_1 = hashing[str_1];
 		n_2 = hashing[str_2];
 		left = serial[n_1];
