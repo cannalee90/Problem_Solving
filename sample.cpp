@@ -20,4 +20,7 @@ int main(){
 #ifdef _CONSOLE
 	freopen("input.txt", "r", stdin);
 #endif
+	int n;
+	int fuel, dis;
+	priority_queue<pair<int, int> > pq;
 }
