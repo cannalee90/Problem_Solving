@@ -20,4 +20,17 @@ int main(){
 #ifdef _CONSOLE
 	freopen("input.txt", "r", stdin);
 #endif
+	string str_1;
+	string str_2;
+	int cnt = 1;
+	while (cin >> str_1 >> str_2){
+		if (str_1 == str_1 && str_1 == "END") break;
+		sort(str_1.begin(), str_1.end());
+		sort(str_2.begin(), str_2.end());
+		if (str_1 == str_2)
+			printf("Case %d: same\n", cnt);
+		else
+			printf("Case %d: different\n", cnt);
+		cnt++;
+	}
 }
