@@ -22,6 +22,7 @@ int main(){
 	freopen("input.txt", "r", stdin);
 	freopen("output.txt", "w+", stdout);
 #endif
+
 	std::ios::sync_with_stdio(false);
 	int t;
 	cin >> t;
