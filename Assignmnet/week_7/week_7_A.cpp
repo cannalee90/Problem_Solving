@@ -35,9 +35,9 @@ int main()
 		char t1;
 		cin >> n;
 		vector<int> result;
-		memset(map, 0, sizeof(map));
 		for (int i = 0; i < n; i++){
 			for (int j = 0; j < n; j++){
+				map[i][j] = '0';
 				cin >> map[i][j];
 			}
 		}
