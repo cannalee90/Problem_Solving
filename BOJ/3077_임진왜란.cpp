@@ -1,58 +1,48 @@
 #include <iostream>
+#include <utility>
+#include <limits.h>
 #include <fstream>
 #include <string>
 #include <string.h>
 #include <queue>
 #include <stdio.h>
 #include <algorithm>
+#include <set>
+#include <map>
 #include <vector>
 #include <stack>
-#include <set>
-#define INF 900000000
-
+#include <functional>
 
 typedef long long ll;
 using namespace std;
 
 
-int main()
-{
+int main(){
 #ifdef _CONSOLE
-    freopen("input.txt", "r", stdin);
+	freopen("input.txt", "r", stdin);
+	freopen("output.txt", "w+", stdout);
 #endif
 	int n;
-	string a;
-	cin >> n;
-	vector<string> reply;
-	vector<string> answer;
-	vector <pair<string, string> > data;
-	for(int i = 0; i<n; i++)
-	{
-		cin >> a;
-		reply.push_back(a);
-	}
-	for(int i = 0; i<n; i++)
-	{
-		cin >> a;
-		answer.push_back(a);
-	}
-	for(int i = 0; i<n; i++)
-	{
-		for(int j = i + 1; j<n; j++)
-		{
-			data.push_back(make_pair(reply[i], reply[j]));
-		}
-	}
 	int cnt = 0;
-	sort(data.begin(), data.end());
-	for(int i = 0; i<n; i++)
-	{
-		for(int j = i + 1; j<n; j++)
-		{
-			if(binary_search(data.begin(), data.end(), make_pair(answer[i], answer[j])))
-				cnt++;
+	string str;
+	map<string, int> data;
+	cin >> n;
+	for (int i = 0; i < n; i++){
+		cin >> str;
+		data.insert(make_pair(str, cnt++));
+	}
+	vector<int> vi(n);
+	for (int i = 0; i < n; i++){
+		cin >> str;
+		vi[i] = data[str];
+	}
+	int ans = 0;
+	for (int i = 0; i < n; i++){
+		for (int j = i + 1;  j < n; j++){
+			if (vi[i] < vi[j])
+				ans++;
 		}
+		cout << ans << endl;
 	}
-    cout << cnt << "/" << n * (n - 1) / 2 << endl;
-	}
-	
+	cout << ans << "/" << (n * (n - 1)) / 2 << endl;
+}
