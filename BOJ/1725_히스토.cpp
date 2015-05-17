@@ -45,7 +45,7 @@ int main()
 		}
 	}
 	while (!st.empty()){
-//		cout << st.top().first * (n - st.top().second) << endl;
+		//		cout << st.top().first * (n - st.top().second) << endl;
 		mmax = max(mmax, st.top().first * (n - st.top().second));
 		st.pop();
 	}
