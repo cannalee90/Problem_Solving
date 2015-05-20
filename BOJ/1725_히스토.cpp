@@ -14,7 +14,7 @@
 typedef long long ll;
 using namespace std;
 
-const int M = 100010;
+const int M = 10;
 int n, m, t;
 
 int main()
@@ -36,22 +36,19 @@ int main()
 		else if (st.top().first < h)
 			st.push(make_pair(h, i));
 		else{
-			int before = i;
 			while (st.top().first > h){
 				mmax = max(mmax, st.top().first * (i - st.top().second));
-				before = st.top().second;
 				st.pop();
 				if (st.empty()) break;
 			}
-			if (st.empty())
-				st.push(make_pair(h, before));
-			else if (h != st.top().first)
-				st.push(make_pair(h, before));
+			st.push(make_pair(h, i));
 		}
 	}
 	while (!st.empty()){
+		//		cout << st.top().first * (n - st.top().second) << endl;
 		mmax = max(mmax, st.top().first * (n - st.top().second));
 		st.pop();
 	}
 	cout << mmax << endl;
 }
+
