@@ -1,27 +1,16 @@
-#include <iostream>
-#include <utility>
-#include <fstream>
-#include <string>
-#include <string.h>
-#include <queue>
-#include <stdio.h>
+#include <cstdio>
 #include <algorithm>
-#include<limits.h>
-#include <set>
-#include <map>
 #include <vector>
-#include <stack>
 
 typedef long long ll;
-
 using namespace std;
-
 
 int main(){
 #ifdef _CONSOLE
 	freopen("input.txt", "r", stdin);
 #endif
 	const int limit =12000001;
+	int n;
 
 	vector<int> Prime;
 	vector<bool> P(limit + 10, true);
@@ -33,7 +22,7 @@ int main(){
 			}
 		}
 	}
-	int n;
+
 	scanf("%d", &n);
 	for (int i = 0; i < n; i++)
 	{
