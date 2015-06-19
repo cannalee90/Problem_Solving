@@ -1,40 +1,32 @@
 #include <iostream>
-#include <fstream>
+#include <cstdio>
 #include <string>
-#include <string.h>
-#include <queue>
-#include <stdio.h>
-#include <algorithm>
 #include <vector>
-#include <stack>
-#include <map>
-#include <set>
-#include <limits.h>
-
-typedef long long ll;
+#include <algorithm>
 using namespace std;
 
-int n, m, t;
-
-
+int n;
+string str;
+long long res = 0;
 int main()
 {
-#ifdef _CONSOLE
-	freopen("input.txt", "r", stdin);
-#endif
-	int n;
-	string str, temp;
-	cin >> n >> str;
-	unsigned long long  ans = 0;
-	for (int i = 0; i < str.size(); i++){
+	scanf("%d", &n);
+	cin >> str;
+	int num = 0;
+	for (int i = 0; i < n; i++)
+	{
 		if (str[i] >= '0' && str[i] <= '9')
-			temp += str[i];
-		else if(temp != ""){
-			ans += stoll(temp);
-			temp = "";
+		{
+			num *= (long long)10;
+			num += (long long)(str[i] - '0');
+
+		}
+		else
+		{
+			res += (long long)num;
+			num = 0;
 		}
 	}
-	if (temp != "") 	ans += stoll(temp);
-
-	cout << ans << endl;
+	res += num;
+	printf("%lld\n", res);
 }
