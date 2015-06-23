@@ -1,70 +1,39 @@
 #include <iostream>
+#include <cstdlib>
+#include <ctime>
+#include <limits.h>
+#include <functional>
+#include <utility>
 #include <fstream>
 #include <string>
 #include <string.h>
 #include <queue>
 #include <stdio.h>
 #include <algorithm>
+#include <set>
+#include <map>
 #include <vector>
 #include <stack>
-#define INF 900000000
-
 
 typedef long long ll;
 using namespace std;
 
-int ans;
-int t, n , m;
+int n, m, test;
+ll dp[11][2001];
 
-void brute_force(int lottery, int cnt)
-{
-	if(cnt == n){ ans++; return;}
-	if(lottery >= m) return;
-	for(int i = lottery * 2; i<= m; i++)
-	{
-		brute_force(i, cnt + 1);
-	}
-}
-
-int main()
-{
+int main(){
 #ifdef _CONSOLE
-    freopen("input.txt", "r", stdin);
+	freopen("input.txt", "r", stdin);
 #endif
-	cin >> t;
-	while(t--)
-	{
-		cin >> n >> m;
-		ans = 0;
-		for(int i = 1; i<=10; i++)
-		{
-			brute_force(i, 1);
+	cin >> test;
+	for (int i = 1; i <= 2000; i++) dp[1][i] = i;
+	for (int i = 2; i <= 10; i++){
+		for (int j = 1; j <= 2000; j++){
+			dp[i][j] += dp[i - 1][j / 2] + dp[i][j - 1];
 		}
-		cout << ans << endl;
 	}
-/*
-	while(t--)
-	{
-		int n, m;
-		cin >> n >> m;
-		vector<vector<int> > DP(n + 1,vector<int>(m + 1, 0));
-		for(int i = 1; i<=m; i++)
-		{
-			DP[1][i] = i;
-		}
-		for(int i = 2; i<=n; i++)
-		{
-			for(int j = pow((double)2, i-1); j<=m; j++)
-			{
-				int idx = j - 1;
-				while(idx > 0)
-				{
-					DP[i][j] += DP[i-1][idx];
-					idx -= 2;
-				}
-			}
-		}
-		cout << DP[n][m] << endl;
+	while (test--){
+		scanf("%d %d", &n, &m);
+		printf("%lld\n", dp[n][m]);
 	}
-	*/
 }
