@@ -41,7 +41,7 @@ int main() {
       }
       set<int>::iterator itor;
       if(temp.size() != 0) 
-        itor = temp.begin();
+        itor = in.lower_bound(*temp.begin());
       else if (val != -1)
         itor = in.lower_bound(val);
       else
