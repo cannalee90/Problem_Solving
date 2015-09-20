@@ -8,5 +8,6 @@ Debug/Source.obj
 *.filters
 Debug/vc120.pdb
 *.obj
-input.txt
+*.txt
+algo.cpp
 Release/vc120.pdb
