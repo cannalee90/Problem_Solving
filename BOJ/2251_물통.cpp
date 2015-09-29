@@ -14,6 +14,7 @@ typedef long long ll;
 using namespace std;
 
 struct bucket{
+
 	int a, b, c;
 	bucket(int a, int b, int c) : a(a), b(b), c(c)
 	{}
