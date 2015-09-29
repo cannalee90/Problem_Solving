@@ -9,5 +9,7 @@ Debug/Source.obj
 Debug/vc120.pdb
 *.obj
 *.txt
+
+sample.cpp
 algo.cpp
 Release/vc120.pdb
