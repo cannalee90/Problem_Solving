@@ -3,10 +3,10 @@
 
 ##폴더설명
 
--BOJ - acmicpc.net 
--AOJ - algospot.com
--UVA - https://uva.onlinejudge.org/
--Codeforce - http://codeforces.com/
+- BOJ - acmicpc.net 
+- AOJ - algospot.com
+- UVA - https://uva.onlinejudge.org/
+- Codeforce - http://codeforces.com/
 
 
 ##언어
