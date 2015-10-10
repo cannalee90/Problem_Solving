@@ -82,6 +82,7 @@ int main(){
 		int zout = 0;
 
 		//coner case..이미 모두 한개의 SCC일때. 이거 몰라서 개삽질함.
+		
 		if (sccidx == 1) {
 			puts("0");
 			continue;
