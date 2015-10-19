@@ -34,7 +34,7 @@ bool dfs(int here) {
 	return false;
 }
 
-bool sliceMatch(int m, int n) {
+int sliceMatch(int m, int n) {
 	for (int i = 0; i < 100; i++) {
 		fill(check.begin(), check.end(), false);
 		dfs(i);
@@ -46,11 +46,10 @@ bool sliceMatch(int m, int n) {
 			}
 		}
 		if (isDone) {
-			cout << i + 1 << endl;
-			return true;
+			return i + 1;
 		}
 	}
-	return false;
+	return -1;
 }
 
 int main() {
@@ -76,7 +75,6 @@ int main() {
 				}
 			}
 		}
-		if (!sliceMatch(m, n))
-			cout << "-1" << endl;
+		cout << sliceMatch(m, n) << endl;
 	}
 }
