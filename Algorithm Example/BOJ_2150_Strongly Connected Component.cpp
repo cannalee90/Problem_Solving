@@ -19,34 +19,33 @@ using namespace std;
 
 
 int sccidx;
-//SCC COMPONENTÀÇ idx
+//SCC COMPONENTì˜ idx
 int cnt;
-//°£¼±ÀÇ Á¾·ù¸¦ ±¸ºÐÇÏ±â À§ÇØ¼­ Á¤Á¡ÀÇ ¹ß°ß ¼ø¼­¸¦ ÀúÀåÇÑ´Ù. 
+//ê°„ì„ ì˜ ì¢…ë¥˜ë¥¼ êµ¬ë¶„í•˜ê¸° ìœ„í•´ì„œ ì •ì ì˜ ë°œê²¬ ìˆœì„œë¥¼ ì €ìž¥í•œë‹¤. 
 
 bool cmp(const vector<int> &a, const vector<int> &b) {
-	//Ãâ·ÂÀ» À§ÇÑ ¼ÒÆ®
+	//ì¶œë ¥ì„ ìœ„í•œ ì†ŒíŠ¸
 	return a[0] < b[0];
 }
 
 int dfs(vector<vector<int> > &graph, vector<int> &dis, vector<int> &SCC, stack<int> &st, int u) {
 
 	dis[u] = ++cnt;
-	//°£¼±ÀÇ Á¾·ù¸¦ ¾Ë¾Æ³»±âÀ§ÇØ¼­ Á¤Á¡ÀÇ ¹ß°ß ¼ø¼­¸¦ ±â·ÏÇÑ´Ù.
+	//ê°„ì„ ì˜ ì¢…ë¥˜ë¥¼ ì•Œì•„ë‚´ê¸°ìœ„í•´ì„œ ì •ì ì˜ ë°œê²¬ ìˆœì„œë¥¼ ê¸°ë¡í•œë‹¤.
 	int ret = dis[u];
-	//ÀÚ½ÅÀÇ ÀÚ½Ä Áß¿¡¼­ ÀÚ±âº¸´Ù Á¶»óÀ¸·Î °¥ ¼ö ÀÖ´ÂÁö ±â·ÏÇÏ´Â º¯¼öÀÌ´Ù. ÃÊ±â°ªÀº ÀÚ±â ÀÚ½ÅÀÇ ¹øÈ£
+	//ìžì‹ ì˜ ìžì‹ ì¤‘ì—ì„œ ìžê¸°ë³´ë‹¤ ì¡°ìƒìœ¼ë¡œ ê°ˆ ìˆ˜ ìžˆëŠ”ì§€ ê¸°ë¡í•˜ëŠ” ë³€ìˆ˜ì´ë‹¤. ì´ˆê¸°ê°’ì€ ìžê¸° ìžì‹ ì˜ ë²ˆí˜¸
 	st.push(u);
-	//uÀÇ subtree´Â ¸ðµÎ uº¸´Ù À§ÂÊÀÇ stack ½×ÀÌ°Ô µÈ´Ù.
+	//uì˜ subtreeëŠ” ëª¨ë‘ uë³´ë‹¤ ìœ„ìª½ì˜ stack ìŒ“ì´ê²Œ ëœë‹¤.
 	for (int i = 0; i < graph[u].size(); i++) {
 		int v = graph[u][i];
 		//there
 		int mmin = INF;
 		if (dis[v] == INF)
 			mmin = dfs(graph, dis, SCC, st, v);
-		//mminÀ» °»½ÅÇÒ  u -> v °¡ Æ®¸®°£¼±ÀÏ °æ¿ì
+		//mminì„ ê°±ì‹ í•   u -> v ê°€ íŠ¸ë¦¬ê°„ì„ ì¼ ê²½ìš°
 		else if (SCC[v] == -1)
 			mmin = dis[v];
-		//È¤Àº u -> v ±³Â÷ °£¼±ÀÏ¶§ ´Ù¸¥ ¸¸¾à ±× ±³Â÷°£¼±ÀÌ ´Ù¸¥ ÄÄÆ÷³ÍÆ®ÀÇ Á¤Á¡ÀÌÁö ¾ÊÀ» °æ¿ì¿¡¸¸ retÀ» °»½ÅÇØ¾ßÇÑ´Ù.
-		//´Ù¸¥ ÄÄÆ÷³ÍÆ®ÀÇ Á¤Á¡ÀÏ °æ¿ì 
+		//í˜¹ì€ u -> v êµì°¨ ê°„ì„ ì¼ë•Œ ë‹¤ë¥¸ ë§Œì•½ ê·¸ êµì°¨ê°„ì„ ì´ ë‹¤ë¥¸ ì»´í¬ë„ŒíŠ¸ì˜ ì •ì ì´ì§€ ì•Šì„ ê²½ìš°ì—ë§Œ retì„ ê°±ì‹ í•´ì•¼í•œë‹¤.
 		ret = min(ret, mmin);
 
 	}
@@ -75,11 +74,11 @@ int main(){
 
 	vector < vector< int > >  graph(n + 1);
 	vector <int> dis(n + 1, INF);
-	//Á¤Á¡ÀÇ ¹ß°ß ¼ø¼­¸¦ ±â·Ï
+	//ì •ì ì˜ ë°œê²¬ ìˆœì„œë¥¼ ê¸°ë¡
 	vector <int> SCC(n + 1, -1);
-	//i¹øÂ° Á¤Á¡ÀÌ ¸î¹øÂ° componentÀÎÁö ±â·ÏÇÑ´Ù.
+	//ië²ˆì§¸ ì •ì ì´ ëª‡ë²ˆì§¸ componentì¸ì§€ ê¸°ë¡í•œë‹¤.
 	vector <vector< int > > ans;
-	//´ä Ãâ·ÂÀ» À§ÇÑ ¹è¿­
+	//ë‹µ ì¶œë ¥ì„ ìœ„í•œ ë°°ì—´
 
 	for (int i = 0; i < m; i++) {
 		int u, v;
@@ -89,7 +88,7 @@ int main(){
 
 	for (int i = 1; i <= n; i++) {
 		stack<int> st;
-		if (dis[i] == INF) //Á¤Á¡ÀÌ ÇÑ¹øµµ ¹ß°ß µÇÁö ¾Ê¾ÒÀ» ¶§¿¡¸¸ Å½»öÀ» ½ÃÀÛÇÑ´Ù.
+		if (dis[i] == INF) //ì •ì ì´ í•œë²ˆë„ ë°œê²¬ ë˜ì§€ ì•Šì•˜ì„ ë•Œì—ë§Œ íƒìƒ‰ì„ ì‹œìž‘í•œë‹¤.
 			dfs(graph, dis, SCC, st, i);
 	}
 
