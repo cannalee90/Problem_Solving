@@ -1,0 +1,1 @@
+print sum(map(int, raw_input().rstrip().split(' ')))
