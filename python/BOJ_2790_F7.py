@@ -10,4 +10,5 @@ for i in xrange(n):
 for i in data:
     if i + n >= mmax:
         ans = ans + 1
+
 print(ans)
