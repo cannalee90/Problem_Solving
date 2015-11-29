@@ -21,8 +21,8 @@ char sg[10];
 int maxvi[10];
 int minvi[10];
 int n;
-ll mmax = -INF;
-ll mmin = INF;
+ll mmax = -999876543210;
+ll mmin = 999876543210;
 
 void solve(int cnt, vector<int>& vi) {
     if(cnt == n + 1) {
