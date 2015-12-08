@@ -25,7 +25,6 @@ int fac(int mid) {
 
 
 int main() {
-    freopen("input.txt", "r", stdin);
     int n;
     cin >> n;
     int left = 1, right = 500000000;
