@@ -7,7 +7,9 @@
 - AOJ - algospot.com
 - UVA - https://uva.onlinejudge.org/
 - Codeforce - http://codeforces.com/
-
+- POJ - http://poj.org/
+- Contest - etc.
+- Python - Every Python Problem solving
 
 ##언어
 
