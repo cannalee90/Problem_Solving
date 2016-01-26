@@ -7,12 +7,14 @@ struct SCC {
     vector<vector<int> > graph;
     vector<vector<int> > rgraph;
     vector<vector<int> > compress;
+    vector<int> sccIdx;
     stack<int> st;
 
     SCC(int size) {
         this->n = size;
         graph.resize(n);
         rgraph.resize(n);
+        sccIdx.resize(n, -1);
     }
 
     void add_edge(int u, int v) {
@@ -52,9 +54,17 @@ struct SCC {
             if (!rvisited[here]) {
                 vector<int> path;
                 rdfs(here, rvisited, path);
+                for(int v : path) {
+                    sccIdx[v] = compress.size();
+                }
                 compress.push_back(path);
             }
         }
+    }
+    vector<vector<int> >  getCompress() {
         return compress;
+    }
+    vector<int> getSCC() {
+        return sccIdx;
     }
 };
