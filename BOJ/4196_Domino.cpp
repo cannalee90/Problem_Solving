@@ -1,3 +1,6 @@
+//Get Compressed graph and get number of component
+//from the graph
+
 #include <iostream>
 #include <vector>
 #include <queue>
