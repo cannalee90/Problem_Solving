@@ -60,11 +60,32 @@ struct SCC {
                 compress.push_back(path);
             }
         }
-    }
-    vector<vector<int> >  getCompress() {
         return compress;
     }
     vector<int> getSCC() {
         return sccIdx;
     }
+    int getSize() {
+        return compress.size();
+    }
+    vector<vector<int> > getCompress() {
+        vector<vector<int> > cgraph(compress.size());
+        for(int i = 0;i < n; i++) {
+            for(int j = 0; j < graph[i].size(); j++) {
+                int here = sccIdx[i];
+                int there = sccIdx[graph[i][j]];
+                if(here == there) continue;
+                cgraph[here].push_back(there);
+            }
+        }
+        for(int i = 0; i < compress.size(); i++) {
+            sort(cgraph[i].begin(), cgraph[i].end());
+            cgraph[i].erase(unique(cgraph[i].begin(), cgraph[i].end()), cgraph[i].end());
+        }
+        return cgraph;
+    }
+    vector<vector<int> > getGraph() {
+        return graph;
+    }
 };
+
