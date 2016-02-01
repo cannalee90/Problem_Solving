@@ -21,6 +21,8 @@ int n, m;
 
 int main() {
     freopen("/Users/kangho/Documents/Problem_Solving/input.txt", "r", stdin);
+    freopen("/Users/kangho/Documents/Problem_Solving/output.txt", "w+", stdout);
+
     int n;
     scanf("%d", &n);
     bitset<21> set;
