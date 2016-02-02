@@ -21,7 +21,7 @@ struct Dijkstra {
     vector<int> process(int u, int v) {
         vector<int> dist(n, 987654321);
         dist[u] = 0;
-        priority_queue<pair<int, int >, vector<pair<int, int> >, greater<pair<int, int > > > pq;
+        priority_queue<pair<int, int >, vector<pair<int, int> >, less<pair<int, int > > > pq;
         pq.push(make_pair(0, u));
         while(!pq.empty()) {
             int hereDist = pq.top().first;
@@ -46,7 +46,6 @@ struct Dijkstra {
 };
 
 int main() {
-    freopen("/Users/kangho/Documents/Problem_Solving/input.txt", "r" , stdin);
     int n, m;
     scanf("%d %d", &n, &m);
     Dijkstra dijk(n);
