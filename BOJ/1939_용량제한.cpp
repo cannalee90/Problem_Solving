@@ -1,7 +1,3 @@
-//
-// Created by  이강호 on 2016. 2. 7..
-//
-
 #include <iostream>
 #include <vector>
 #include <queue>
@@ -20,7 +16,6 @@ using namespace std;
 
 int main() {
     int n, m;
-    freopen("/Users/kangho/Documents/Problem_Solving/input.txt", "r", stdin);
     scanf("%d %d", &n, &m);
     vector<vector<pair<int, int > > > graph(n + 1);
     for(int i = 0; i < m;i ++) {
