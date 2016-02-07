@@ -1,11 +1,9 @@
 struct Dijkstra {
 	int n;
 	vector<vector<pair<int, int > > > graph;
-	vector<vector<int> > parent;
 	Dijkstra(int size) {
 		this->n = size;
 		graph.resize(n);
-		parent.resize(n , vector<int>(n, -1));
 	}
 	void add_edge(int u, int v, int cost) {
 		graph[u].push_back(make_pair(v, cost));
@@ -25,14 +23,10 @@ struct Dijkstra {
 				int thereDist = graph[here][i].second + hereDist;
 				if(thereDist < dist[there]) {
 					dist[there] = thereDist;
-					parent[u][there] = here;
 					pq.push(make_pair(thereDist, there));
 				}
 			}
 		}
 		return dist;
-	}
-	vector<int> getPath(int u) {
-		return parent[u];
 	}
 };
